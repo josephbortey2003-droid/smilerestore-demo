@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Smile Restore Dental</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,600..900,100&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: "appointment desk": headline + live booking card first, then real results slider, priced treatment list that feeds the booking card, two branches. Brand = Smile Restore's own cream / espresso / orange-dot logo. */
+:root{
+  --bg:#F5EFE6;        /* their poster cream */
+  --paper:#FFFBF5;
+  --ink:#37190C;       /* sampled from logo */
+  --ink-soft:#6E5446;
+  --line:#E3D6C6;
+  --dot:#F5610D;       /* the orange dot on the i */
+  --dot-ink:#B8470A;   /* orange for small text */
+  --chip:#EFE4D6;
+  --display:"Fraunces", "Georgia", serif;
+  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  color-scheme:light;
+}
+/* Single theme on purpose: the clinic's brand is light cream + espresso + orange, so the site never flips to dark mode. */
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-variation-settings:"SOFT" 100;line-height:1.05;margin:0;text-wrap:balance}
+h2{font-size:clamp(30px,4.4vw,46px);font-weight:800}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--dot);outline-offset:3px;border-radius:6px}
+.eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dot-ink)}
+.logo-l{display:none}
+
+/* header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:16px;padding-block:12px}
+.bar img{height:34px;width:auto}
+.bar nav{margin-left:auto;display:flex;gap:22px;font-weight:600;font-size:15px}
+.bar nav a{text-decoration:none;color:var(--ink-soft)}
+.bar nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:12px 20px;font:700 15px var(--body);cursor:pointer;text-decoration:none}
+.btn-ink{background:var(--ink);color:var(--bg)}
+.btn-dot{background:var(--dot);color:#fff}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+@media (max-width:760px){.bar nav{display:none}.bar .btn{margin-left:auto;padding:10px 16px}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;padding-block:56px 64px;align-items:start}
+.hero h1{font-size:clamp(42px,6.6vw,78px);font-weight:900;letter-spacing:-.01em}
+.hero h1 .i{position:relative;display:inline-block}
+.hero h1 .dot{color:var(--dot)}
+.lede{font-size:19px;color:var(--ink-soft);max-width:34ch;margin-top:20px}
+.proof{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.proof span{background:var(--chip);border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600}
+.proof b{font-variant-numeric:tabular-nums}
+.hero-photo{margin-top:34px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hero-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:200px 200px 18px 18px}
+.hero-photo img:last-child{border-radius:18px 18px 200px 200px;margin-top:40px}
+
+/* booking card */
+.book{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 30px 60px -40px rgba(55,25,12,.45);position:sticky;top:96px}
+.book h2{font-size:30px}
+.book .sub{color:var(--ink-soft);font-size:15px;margin-top:6px}
+.field{margin-top:18px}
+.field>label,.field>.lab{display:block;font-size:13px;font-weight:700;letter-spacing:.04em;margin-bottom:8px}
+.seg{display:flex;flex-wrap:wrap;gap:8px}
+.seg button{border:1.5px solid var(--line);background:transparent;color:var(--ink);border-radius:12px;padding:9px 13px;font:600 14px var(--body);cursor:pointer}
+.seg button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
+select,input{width:100%;font:500 16px var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px}
+.book .btn{width:100%;margin-top:22px;padding:15px}
+.fine{font-size:13px;color:var(--ink-soft);margin-top:12px;text-align:center}
+.picked{margin-top:14px;font-size:14px;background:var(--chip);border-radius:12px;padding:10px 14px}
+.picked b{color:var(--dot-ink)}
+
+/* results */
+section{padding-block:72px}
+.results{background:var(--ink);color:var(--bg)}
+.results .eyebrow{color:var(--dot)}
+.results-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:48px;align-items:center}
+.results p.copy{color:color-mix(in srgb,var(--bg) 78%,transparent);margin-top:16px;max-width:38ch}
+.cases{display:flex;gap:8px;margin-top:24px}
+.cases button{background:transparent;color:var(--bg);border:1.5px solid color-mix(in srgb,var(--bg) 35%,transparent);border-radius:999px;padding:8px 16px;font:600 14px var(--body);cursor:pointer}
+.cases button[aria-pressed="true"]{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.ba{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:900/437;max-width:100%;user-select:none;touch-action:pan-y;background:#000}
+.ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.ba .top{clip-path:inset(0 calc(100% - var(--x,50%)) 0 0)}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--x,50%);width:3px;background:#fff;transform:translateX(-1.5px)}
+.ba .handle::after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#fff;color:#37190C;display:grid;place-items:center;font-size:20px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+.ba .tag{position:absolute;bottom:12px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(0,0,0,.55);color:#fff;padding:5px 10px;border-radius:8px}
+.ba .tag.l{left:12px}.ba .tag.r{right:12px}
+.ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba-note{font-size:13px;margin-top:10px;color:color-mix(in srgb,var(--bg) 65%,transparent)}
+
+/* treatments */
+.treat-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap}
+.treat-head p{color:var(--ink-soft);max-width:44ch}
+.list{margin-top:34px;border-top:1.5px solid var(--ink)}
+.row{display:grid;grid-template-columns:1fr auto auto;gap:20px;align-items:center;padding-block:20px;border-bottom:1px solid var(--line)}
+.row h3{font-size:24px;font-weight:700}
+.row p{color:var(--ink-soft);font-size:15px;margin-top:4px;max-width:52ch}
+.price{font-weight:700;font-variant-numeric:tabular-nums;font-size:18px;white-space:nowrap;text-align:right}
+.price small{display:block;font-weight:500;font-size:12px;color:var(--ink-soft)}
+.add{border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:8px 14px;font:700 13px var(--body);cursor:pointer;white-space:nowrap}
+.add[aria-pressed="true"]{background:var(--dot);border-color:var(--dot);color:#fff}
+@media (max-width:640px){.row{grid-template-columns:1fr auto}.row .add{grid-column:1/-1;justify-self:start}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px}
+.step .n{font-family:var(--display);font-size:44px;font-weight:900;color:var(--dot);line-height:1}
+.step h3{font-size:22px;margin-top:10px}
+.step p{color:var(--ink-soft);margin-top:8px;font-size:15px}
+
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:34px}
+.reviews blockquote{margin:0;border-top:1.5px solid var(--ink);padding-top:18px}
+.reviews q{font-family:var(--display);font-size:21px;font-weight:600;line-height:1.3;quotes:"“" "”"}
+.reviews cite{display:block;font-style:normal;font-size:14px;color:var(--ink-soft);margin-top:14px}
+.stars{color:var(--dot);letter-spacing:2px}
+
+/* branches */
+.branches{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-top:34px}
+.branch{background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid}
+.branch.photo{grid-template-columns:.9fr 1.1fr}
+.branch img{width:100%;height:100%;object-fit:cover;min-height:260px}
+.branch .in{padding:26px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.branch h3{font-size:30px}
+.branch dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:6px 0 0;font-size:15px}
+.branch dt{font-weight:700}
+.branch dd{margin:0;color:var(--ink-soft)}
+.branch .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:10px}
+.branch .acts .btn{padding:10px 16px;font-size:14px}
+.inside{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
+.inside img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:16px}
+
+footer{border-top:1px solid var(--line);padding-block:30px 110px;font-size:14px;color:var(--ink-soft)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
+
+.dock{display:none}
+@media (max-width:760px){
+  .dock{display:flex;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--paper);border-top:1px solid var(--line);
+    padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+  .dock .btn{flex:1}
+}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;gap:34px;padding-block:36px 48px}
+  .book{position:static}
+  .results-grid,.branches,.branch.photo{grid-template-columns:1fr}
+  .steps,.reviews{grid-template-columns:1fr}
+  .branch img{min-height:0;aspect-ratio:3/4;object-position:50% 20%}
+}
+@media (prefers-reduced-motion:no-preference){.hero h1,.lede,.proof{animation:rise .7s both}.lede{animation-delay:.08s}.proof{animation-delay:.16s}
+  @keyframes rise{from{transform:translateY(14px);opacity:.01}}}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a href="#top" aria-label="Smile Restore Dental, home"><img class="logo-d" src="img/logo.png" alt="Smile Restore Dental"><img class="logo-l" src="img/logo_light.png" alt="Smile Restore Dental"></a>
+    <nav aria-label="Sections"><a href="#results">Results</a><a href="#treatments">Treatments &amp; prices</a><a href="#visit">Visit us</a></nav>
+    <a class="btn btn-ink" href="#book">Book a visit</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">East Legon · Labone</div>
+      <h1 style="margin-top:14px">Brighter, straighter, healthier smiles<span class="dot">.</span></h1>
+      <p class="lede">Teeth whitening, braces, cleaning and family dental care, with clear prices before we start.</p>
+      <div class="proof">
+        <span>★ <b>4.6</b> from <b>870</b> Google reviews</span>
+        <span><b>116K</b> follow us on Instagram</span>
+        <span>Tue–Sat · 9am–5pm</span>
+      </div>
+      <div class="hero-photo">
+        <img src="img/whitening.webp" alt="A patient during a teeth whitening session at Smile Restore">
+        <img src="img/lounge.webp" alt="The patient lounge at the East Legon clinic">
+      </div>
+    </div>
+
+    <form class="book" id="book" novalidate>
+      <h2>Request an appointment</h2>
+      <p class="sub">Choose what you need. We confirm your time on WhatsApp.</p>
+
+      <div class="field"><label for="svc">Treatment</label>
+        <select id="svc">
+          <option>Check-up &amp; general dental</option>
+          <option>Scaling &amp; cleaning</option>
+          <option>Teeth whitening</option>
+          <option>Braces / teeth straightening</option>
+          <option>Cleaning with braces (orthodontic)</option>
+          <option>Kids' dental care</option>
+        </select>
+      </div>
+
+      <div class="field"><span class="lab" id="br-l">Branch</span>
+        <div class="seg" role="group" aria-labelledby="br-l" id="branch">
+          <button type="button" aria-pressed="true" data-v="East Legon">East Legon</button>
+          <button type="button" aria-pressed="false" data-v="Labone">Labone</button>
+        </div>
+      </div>
+
+      <div class="field"><span class="lab" id="day-l">Preferred day</span>
+        <div class="seg" role="group" aria-labelledby="day-l" id="day">
+          <button type="button" aria-pressed="false">Tue</button><button type="button" aria-pressed="false">Wed</button><button type="button" aria-pressed="true">Thu</button><button type="button" aria-pressed="false">Fri</button><button type="button" aria-pressed="false">Sat</button>
+        </div>
+      </div>
+
+      <div class="field"><label for="nm">Your full name</label><input id="nm" autocomplete="name" placeholder="e.g. Ama Mensah"></div>
+
+      <div class="picked" id="extras" hidden></div>
+      <a class="btn btn-dot" id="send" href="#" target="_blank" rel="noopener">Send request on WhatsApp</a>
+      <p class="fine">Or call 027 362 8321 · 0555 716 192</p>
+    </form>
+  </div>
+
+  <section class="results" id="results">
+    <div class="wrap results-grid">
+      <div>
+        <div class="eyebrow">Real patients, real results</div>
+        <h2 style="margin-top:12px">Drag to see the difference.</h2>
+        <p class="copy">Teeth whitening results photographed in our chair, before and after one session. No filters.</p>
+        <div class="cases" role="group" aria-label="Choose a case">
+          <button type="button" aria-pressed="true" data-c="w1">Case 1</button>
+          <button type="button" aria-pressed="false" data-c="w2">Case 2</button>
+        </div>
+      </div>
+      <div>
+        <div class="ba" id="ba" style="--x:50%">
+          <img id="ba-after" src="img/w1_after.webp" alt="After teeth whitening">
+          <img class="top" id="ba-before" src="img/w1_before.webp" alt="Before teeth whitening">
+          <div class="handle" aria-hidden="true"></div>
+          <span class="tag l">Before</span><span class="tag r">After</span>
+          <input type="range" id="bax" min="0" max="100" value="50" aria-label="Compare before and after">
+        </div>
+        <p class="ba-note">Photos from Smile Restore's own patient records, shared on their Google profile.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="treatments">
+    <div class="wrap">
+      <div class="treat-head">
+        <div><div class="eyebrow">Treatments &amp; prices</div><h2 style="margin-top:12px">Know the price before you sit down.</h2></div>
+        <p>Tap “Add” on anything you want and it goes straight into your appointment request.</p>
+      </div>
+      <div class="list" id="list">
+        <div class="row"><div><h3>Scaling &amp; cleaning</h3><p>Removes tartar and stains so gums stay healthy. Recommended every six months.</p></div><div class="price">GH₵ 500</div><button class="add" type="button" data-s="Scaling &amp; cleaning" aria-pressed="false">Add</button></div>
+        <div class="row"><div><h3>Cleaning with braces</h3><p>A careful orthodontic clean around brackets and wires.</p></div><div class="price">GH₵ 750</div><button class="add" type="button" data-s="Cleaning with braces (orthodontic)" aria-pressed="false">Add</button></div>
+        <div class="row"><div><h3>Extra-shine polishing</h3><p>An add-on after cleaning for a smoother, brighter finish.</p></div><div class="price">GH₵ 75</div><button class="add" type="button" data-x="Extra-shine polishing (GH₵75)" aria-pressed="false">Add</button></div>
+        <div class="row"><div><h3>Teeth whitening</h3><p>In-chair whitening, like the results above.</p></div><div class="price">Ask us<small>price on consultation</small></div><button class="add" type="button" data-s="Teeth whitening" aria-pressed="false">Add</button></div>
+        <div class="row"><div><h3>Braces &amp; teeth straightening</h3><p>Assessment, fitting and regular adjustments until your smile is straight.</p></div><div class="price">Ask us<small>after assessment</small></div><button class="add" type="button" data-s="Braces / teeth straightening" aria-pressed="false">Add</button></div>
+        <div class="row"><div><h3>Kids' smiles</h3><p>Gentle check-ups and care for children.</p></div><div class="price">Ask us</div><button class="add" type="button" data-s="Kids' dental care" aria-pressed="false">Add</button></div>
+        <div class="row"><div><h3>Home dental kit</h3><p>Everything you need to keep your teeth clean between visits.</p></div><div class="price">GH₵ 145</div><button class="add" type="button" data-x="Home dental kit (GH₵145)" aria-pressed="false">Add</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="eyebrow">Your first visit</div>
+      <h2 style="margin-top:12px">Three steps, no surprises.</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Send your request</h3><p>Pick a treatment and a day above. We reply on WhatsApp with a time.</p></div>
+        <div class="step"><div class="n">2</div><h3>Come in for a check-up</h3><p>At East Legon or Labone. The dentist examines your teeth and explains what they see.</p></div>
+        <div class="step"><div class="n">3</div><h3>Agree your plan</h3><p>You get the treatment and the price in writing before anything starts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="eyebrow">From our Google reviews</div>
+      <div class="reviews">
+        <blockquote><span class="stars">★★★★★</span><q>I started seeing results after just three months of wearing my braces and I'm genuinely happy with my experience!</q><cite>Sherry B. · braces patient</cite></blockquote>
+        <blockquote><span class="stars">★★★★</span><q>From the very first appointment, they were kind, professional, and took the time to explain every step of my treatment.</q><cite>Rahma I. Y. · orthodontics</cite></blockquote>
+        <blockquote><span class="stars">★★★★</span><q>I've visited several dental clinics, but this was by far the best experience I've ever had.</q><cite>Ebenezer K. T.</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="visit" style="padding-top:0">
+    <div class="wrap">
+      <div class="eyebrow">Visit us</div>
+      <h2 style="margin-top:12px">Two clinics. Same care.</h2>
+      <div class="branches">
+        <article class="branch photo">
+          <img src="img/building.webp" alt="The Smile Restore clinic building on Aar Baakor Street, East Legon">
+          <div class="in">
+            <h3>East Legon</h3>
+            <dl>
+              <dt>Where</dt><dd>Aar Baakor Street, off Boundary Road, behind Ogbojo Total filling station</dd>
+              <dt>Hours</dt><dd>Tue–Sat, 9am–5pm</dd>
+              <dt>Phone</dt><dd>055 571 6192</dd>
+            </dl>
+            <div class="acts"><a class="btn btn-ink" href="https://www.google.com/maps/search/?api=1&amp;query=The+Smile+Restore+Dental+Clinics+East+Legon" target="_blank" rel="noopener">Directions</a></div>
+          </div>
+        </article>
+        <article class="branch">
+          <div class="in">
+            <h3>Labone</h3>
+            <dl>
+              <dt>Where</dt><dd>56 Orphan Crescent, Labone (GL-027-7195)</dd>
+              <dt>Hours</dt><dd>Tue–Sat, 9am–5pm</dd>
+              <dt>Phone</dt><dd>027 362 8321</dd>
+            </dl>
+            <div class="acts"><a class="btn btn-ink" href="https://www.google.com/maps/search/?api=1&amp;query=56+Orphan+Crescent+Labone+Accra" target="_blank" rel="noopener">Directions</a><a class="btn btn-ghost" href="https://www.instagram.com/smile_restore_dental/" target="_blank" rel="noopener">Instagram</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span>© 2026 Smile Restore Dental · East Legon &amp; Labone, Accra</span><span>Landline 030 804 9801 · @smile_restore_dental</span></div></footer>
+
+<div class="dock"><a class="btn btn-ghost" href="tel:+233273628321">Call</a><a class="btn btn-dot" href="#book">Book a visit</a></div>
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const WA='233273628321';
+  const extras=new Set();
+  function seg(id){$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{$$('#'+id+' button').forEach(x=>x.setAttribute('aria-pressed',x===b));update();}));}
+  seg('branch'); seg('day');
+  const pick=id=>{const b=$('#'+id+' button[aria-pressed="true"]');return b?(b.dataset.v||b.textContent):'';};
+  function update(){
+    const name=$('#nm').value.trim();
+    const days={Tue:'Tuesday',Wed:'Wednesday',Thu:'Thursday',Fri:'Friday',Sat:'Saturday'};
+    let msg=`Hello Smile Restore, I'd like to book an appointment.\nTreatment: ${$('#svc').value}\nBranch: ${pick('branch')}\nPreferred day: ${days[pick('day')]||pick('day')}`;
+    if(extras.size) msg+=`\nAlso: ${[...extras].join(', ')}`;
+    if(name) msg+=`\nName: ${name}`;
+    $('#send').href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
+    const ex=$('#extras'); ex.hidden=!extras.size; ex.innerHTML=extras.size?'Added: <b>'+[...extras].join(', ')+'</b>':'';
+    $$('.add[data-s]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s.replace('&amp;','&')===$('#svc').value));
+  }
+  $('#svc').addEventListener('change',update); $('#nm').addEventListener('input',update);
+  $$('.add').forEach(b=>b.addEventListener('click',()=>{
+    if(b.dataset.s){ $('#svc').value=b.dataset.s.replace('&amp;','&'); }
+    else { extras.has(b.dataset.x)?extras.delete(b.dataset.x):extras.add(b.dataset.x); b.setAttribute('aria-pressed',extras.has(b.dataset.x)); }
+    update();
+    if(b.dataset.s) $('#book').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  }));
+  update();
+  // before/after
+  const ba=$('#ba'), r=$('#bax');
+  r.addEventListener('input',()=>ba.style.setProperty('--x',r.value+'%'));
+  $$('.cases button').forEach(b=>b.addEventListener('click',()=>{
+    $$('.cases button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    $('#ba-before').src='img/'+b.dataset.c+'_before.webp'; $('#ba-after').src='img/'+b.dataset.c+'_after.webp';
+    r.value=50; ba.style.setProperty('--x','50%');
+  }));
+})();
+</script>
+
+</body>
+</html>
